@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>챗봇</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Qwen2-7B 챗봇</h1>
+        <div class="chat-box">
+            {% for msg in history %}
+                <div class="message {{ 'user' if msg.role == 'user' else 'bot' }}">
+                    <span class="role">{{ msg.role }}:</span>
+                    <p>{{ msg.content }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <form method="post" action="/chat">
+            <input type="text" name="user_input" placeholder="메시지 입력..." required>
+            <button type="submit">전송</button>
+        </form>
+    </div>
+</body>
+</html>
